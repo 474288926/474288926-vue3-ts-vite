@@ -3,21 +3,45 @@ import Home from '@/views/Home.vue'
 import Vuex from '@/views/Vuex.vue'
 import Test from '@/views/Test.vue'
 
-const routes: Array<RouteRecordRaw> = [
+const layout = () => import('../views/layout/layout.vue')
+
+// 路由字段扩展
+export type AppRouteRecordRaw = RouteRecordRaw & {
+  icon?: string
+}
+
+const routes = [
   {
     path: '/',
-    name: 'Home',
+    // name: '首页',
     component: Home
   },
   {
-    path: '/vuex',
-    name: 'Vuex',
-    component: Vuex
-  },
-  {
-    path: '/test',
-    name: 'Test',
-    component: Test
+    path: '/layout',
+    name: 'layout',
+    component: layout,
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        icon: 'el-icon-menu',
+        component: Home
+      },
+      {
+        path: '/vuex',
+        name: 'Vuex',
+        icon: 'el-icon-menu',
+        component: Vuex,
+        children: [
+          {
+            path: '/test',
+            name: 'Test',
+            icon: 'el-icon-menu',
+            component: Test
+          }
+        ]
+      }
+    ] as AppRouteRecordRaw[]
   }
 ]
 
