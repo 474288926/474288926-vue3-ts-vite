@@ -117,11 +117,11 @@ const load = (tree, treeNode, resolve) => {
 </script>
 
 <style lang="stylus" scoped>
-/deep/.warning-row {
+:deep().warning-row {
   background: oldlace !important;
 }
 
-/deep/.success-row {
+:deep().success-row {
   background: #f0f9eb !important;
 }
 </style>
