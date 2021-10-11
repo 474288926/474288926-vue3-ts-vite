@@ -2,15 +2,12 @@
   <div class="home-container page-container">
     <img class="vue-element-plus-logo" alt="Vue logo" src="../assets/logo.png" />
     <div class="page-title">Vite2.x + Vue3.x + TypeScript + Element Plus</div>
+    <edit-table></edit-table>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'Home'
-})
+<script setup lang="ts">
+import EditTable from '../components/EditTable/EditTable.vue'
 </script>
 
 <style scoped lang="stylus">
