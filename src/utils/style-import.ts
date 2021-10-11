@@ -12,7 +12,8 @@ import {
   ElMenu,
   ElSubMenu,
   ElMenuItem,
-  ElMenuItemGroup
+  ElMenuItemGroup,
+  ElScrollbar
 } from 'element-plus'
 
 /**
@@ -34,7 +35,8 @@ export default function styleImport(app: App) {
     ElMenu,
     ElSubMenu,
     ElMenuItem,
-    ElMenuItemGroup
+    ElMenuItemGroup,
+    ElScrollbar
   ].forEach((v) => {
     app.use(v)
   })
