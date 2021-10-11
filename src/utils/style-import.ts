@@ -1,5 +1,7 @@
 import { App } from 'vue'
 import {
+  ElRow,
+  ElCol,
   ElIcon,
   ElLoading,
   ElCard,
@@ -23,6 +25,8 @@ import {
  */
 export default function styleImport(app: App) {
   ;[
+    ElRow,
+    ElCol,
     ElButton,
     ElCard,
     ElLoading,
