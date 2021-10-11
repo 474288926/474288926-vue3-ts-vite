@@ -15,7 +15,10 @@ import {
   ElSubMenu,
   ElMenuItem,
   ElMenuItemGroup,
-  ElScrollbar
+  ElScrollbar,
+  ElRadio,
+  ElRadioGroup,
+  ElRadioButton
 } from 'element-plus'
 
 /**
@@ -40,7 +43,10 @@ export default function styleImport(app: App) {
     ElSubMenu,
     ElMenuItem,
     ElMenuItemGroup,
-    ElScrollbar
+    ElScrollbar,
+    ElRadio,
+    ElRadioGroup,
+    ElRadioButton
   ].forEach((v) => {
     app.use(v)
   })
