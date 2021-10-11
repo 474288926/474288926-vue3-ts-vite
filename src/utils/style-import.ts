@@ -18,7 +18,8 @@ import {
   ElScrollbar,
   ElRadio,
   ElRadioGroup,
-  ElRadioButton
+  ElRadioButton,
+  ElPageHeader
 } from 'element-plus'
 
 /**
@@ -46,7 +47,8 @@ export default function styleImport(app: App) {
     ElScrollbar,
     ElRadio,
     ElRadioGroup,
-    ElRadioButton
+    ElRadioButton,
+    ElPageHeader
   ].forEach((v) => {
     app.use(v)
   })

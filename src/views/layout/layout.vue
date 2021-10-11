@@ -5,7 +5,16 @@
       <el-aside width="200px"
         ><NavMenu :default-active="route.path" :drop-Down-data="dropDownData"></NavMenu
       ></el-aside>
-      <el-main><router-view></router-view></el-main>
+      <el-main>
+        <el-row>
+          <el-page-header
+            icon="el-icon-arrow-left"
+            :content="route.name"
+            @back="goBack"
+          />
+          <router-view></router-view>
+        </el-row>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -23,6 +32,9 @@ const route = useRoute()
 const dropDownData = computed(() => {
   return router.options.routes[1].children
 })
+const goBack = () => {
+  router.push('/')
+}
 </script>
 
 <style scoped>

@@ -14,7 +14,7 @@ const routes = [
   {
     path: '/',
     // name: '首页',
-    component: Home
+    redirect: '/home'
   },
   {
     path: '/layout',
