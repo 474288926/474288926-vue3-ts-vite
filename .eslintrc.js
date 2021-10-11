@@ -28,7 +28,9 @@ module.exports = {
         props: true,
         ignorePropertyModificationsFor: ['state', 'config']
       }
-    ]
+    ],
+    // 解决console语法报错
+    'no-console': 'off'
   },
   settings: {}
 }
