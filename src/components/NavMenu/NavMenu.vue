@@ -18,15 +18,8 @@
 <script setup lang="ts">
 import { defineProps, toRefs } from 'vue'
 import NavMenuItem from './comps/NavMenuItem.vue'
+import type { NavMenuEdit } from './type'
 
-type NavMenuEdit = {
-  BackgroundColor?: String
-  TextColor?: String
-  ActiveTextColor?: String
-  dropDownData: Object
-  isCollapse?: Boolean
-  DefaultActive: String
-}
 const props: NavMenuEdit = defineProps({
   BackgroundColor: String,
   TextColor: String,
