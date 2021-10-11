@@ -2,9 +2,12 @@
   <el-container>
     <el-header>Header</el-header>
     <el-container>
-      <el-aside width="200px"
-        ><NavMenu :default-active="route.path" :drop-Down-data="dropDownData"></NavMenu
-      ></el-aside>
+      <el-aside width="200px">
+        <nav-menu
+          :default-active="route.path"
+          :drop-Down-data="dropDownData"
+        ></nav-menu>
+      </el-aside>
       <el-main>
         <el-row>
           <el-page-header

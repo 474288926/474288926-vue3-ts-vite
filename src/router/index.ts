@@ -31,15 +31,13 @@ const routes = [
         path: '/vuex',
         name: 'Vuex',
         icon: 'el-icon-menu',
-        component: Vuex,
-        children: [
-          {
-            path: '/test',
-            name: 'Test',
-            icon: 'el-icon-menu',
-            component: Test
-          }
-        ]
+        component: Vuex
+      },
+      {
+        path: '/test',
+        name: 'Test',
+        icon: 'el-icon-menu',
+        component: Test
       }
     ] as AppRouteRecordRaw[]
   }
