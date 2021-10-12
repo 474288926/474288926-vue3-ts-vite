@@ -49,6 +49,7 @@ const props: inputEdit = defineProps({
   prefixIcon: String
 })
 const {
+  value,
   type,
   size,
   autosize,
