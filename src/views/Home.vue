@@ -8,13 +8,29 @@
       :table-handle="tableHandle"
       :default-sort="defaultSort"
     ></edit-table>
+    <edit-input
+      :type="type"
+      :size="size"
+      v-model="input"
+      :autosize="autosize"
+      :placeholder="placeholder"
+      :maxlength="maxlength"
+      :disabled="disabled"
+      :clearable="clearable"
+      :showPassword="showPassword"
+      :suffixIcon="suffixIcon"
+      :prefixIcon="prefixIcon"
+      @inputChange="inputChange"
+    ></edit-input>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import EditTable from '../components/EditTable/EditTable.vue'
+import EditInput from '../components/EditInput/EditInput.vue'
 
+// table
 const defaultSort = reactive({ prop: 'name', order: 'descending' })
 const tableData = reactive([
   {
@@ -85,6 +101,22 @@ const tableHandle = reactive({
     }
   ]
 })
+
+// input
+const input = ref('')
+const type = ref('text')
+const size = ref('mini')
+const autosize = ref(false)
+const placeholder = ref('输入框')
+const maxlength = ref(30)
+const disabled = ref(false)
+const clearable = ref(true)
+const showPassword = ref(false)
+const suffixIcon = ref('el-icon-date')
+const prefixIcon = ref('el-icon-date')
+const inputChange = (val) => {
+  console.log(val, input.value)
+}
 </script>
 
 <style scoped lang="stylus">

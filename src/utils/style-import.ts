@@ -21,7 +21,8 @@ import {
   ElRadioButton,
   ElPageHeader,
   ElTable,
-  ElTableColumn
+  ElTableColumn,
+  ElInput
 } from 'element-plus'
 
 /**
@@ -52,7 +53,8 @@ export default function styleImport(app: App) {
     ElRadioButton,
     ElPageHeader,
     ElTable,
-    ElTableColumn
+    ElTableColumn,
+    ElInput
   ].forEach((v) => {
     app.use(v)
   })
