@@ -2,7 +2,7 @@
   <el-table
     :data="tableData"
     style="width: 100%"
-    :default-sort="{ prop: 'name', order: 'descending' }"
+    :default-sort="defaultSort"
     ref="editTable"
     border
     row-key="id"
@@ -12,10 +12,10 @@
     @selection-change="handleSelectionChange"
     lazy
     :load="load"
-    :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
+    :tree-props="treeProps"
   >
-    <el-table-column type="selection" width="55" />
-    <el-table-column type="expand">
+    <el-table-column v-if="selection" type="selection" width="55" />
+    <el-table-column v-if="expand" type="expand">
       <template #default="props">
         <p>State: {{ props.row.id }}</p>
         <p>City: {{ props.row.date }}</p>
@@ -24,56 +24,65 @@
     </el-table-column>
     <el-table-column type="index" width="55" label="序号" />
     <el-table-column
-      prop="date"
-      label="Date"
-      :filters="[
-        { text: '2016-05-01', value: '2016-05-01' },
-        { text: '2016-05-02', value: '2016-05-02' },
-        { text: '2016-05-03', value: '2016-05-03' },
-        { text: '2016-05-04', value: '2016-05-04' }
-      ]"
-      :filter-method="filterHandler"
-    />
-    <el-table-column prop="name" sortable label="Name" />
-    <el-table-column fixed="right" label="Operations">
+      sortable
+      v-for="v in columns"
+      :key="v.id"
+      :prop="v.value"
+      :label="v.text"
+      :filters="v.editRender.filters"
+      :filter-method="v.editRender.filterMethod"
+    ></el-table-column>
+    <el-table-column
+      fixed="right"
+      v-if="tableHandle"
+      :label="tableHandle.label"
+      :width="tableHandle.width"
+    >
       <template #default>
-        <el-button type="text" size="small" @click="handleClick">Detail</el-button>
-        <el-button type="text" size="small">Edit</el-button>
+        <el-button
+          v-for="(v, index) in tableHandle.options"
+          :key="index"
+          :type="v.type"
+          :size="v.size"
+          @click.native.prevent="v.method"
+          >{{ v.label }}</el-button
+        >
       </template>
     </el-table-column>
   </el-table>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { defineProps, toRefs } from 'vue'
+import type { tableEdit } from './type'
 
-const tableData = reactive([
-  {
-    id: 1,
-    date: '2016-05-02',
-    name: 'wangxiaohu'
+const props: tableEdit = defineProps({
+  tableData: Array,
+  columns: Array,
+  tableHandle: Object,
+  treeProps: {
+    type: Object,
+    default() {
+      return { children: 'children', hasChildren: 'hasChildren' }
+    }
   },
-  {
-    id: 2,
-    date: '2016-05-04',
-    name: 'wangxiaohu'
+  selection: {
+    type: Boolean,
+    default() {
+      return false
+    }
   },
-  {
-    id: 3,
-    date: '2016-05-01',
-    name: 'wangxiaohu',
-    hasChildren: true
+  expand: {
+    type: Boolean,
+    default() {
+      return false
+    }
   },
-  {
-    id: 4,
-    date: '2016-05-03',
-    name: 'wangxiaohu'
-  }
-])
-// 按钮点击
-const handleClick = () => {
-  console.log('click')
-}
+  defaultSort: Object
+})
+const { tableData, columns, tableHandle, treeProps, selection, expand, defaultSort } =
+  toRefs(props)
+
 // 设置行的高亮
 const tableRowClassName = ({ row, rowIndex }) => {
   if (row.name === 'Tom') {
@@ -92,11 +101,7 @@ const handleCurrentChange = (val) => {
 const handleSelectionChange = (val) => {
   console.log(val)
 }
-// table标签过滤方法
-const filterHandler = (value, row, column) => {
-  const { property } = column
-  return row[property] === value
-}
+
 // 懒加载
 const load = (tree, treeNode, resolve) => {
   setTimeout(() => {
