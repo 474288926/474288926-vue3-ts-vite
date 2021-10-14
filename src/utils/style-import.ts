@@ -22,7 +22,8 @@ import {
   ElPageHeader,
   ElTable,
   ElTableColumn,
-  ElInput
+  ElInput,
+  ElAutocomplete
 } from 'element-plus'
 
 /**
@@ -54,7 +55,8 @@ export default function styleImport(app: App) {
     ElPageHeader,
     ElTable,
     ElTableColumn,
-    ElInput
+    ElInput,
+    ElAutocomplete
   ].forEach((v) => {
     app.use(v)
   })
