@@ -9,6 +9,7 @@
       :default-sort="defaultSort"
     ></edit-table>
     <edit-input
+      class="mt"
       :type="type"
       :size="size"
       v-model="input"
@@ -22,6 +23,11 @@
       :prefixIcon="prefixIcon"
       @inputChange="inputChange"
     ></edit-input>
+    <edit-autocomplete
+      class="mt"
+      v-model="autoc"
+      @querySearch="querySearch"
+    ></edit-autocomplete>
   </div>
 </template>
 
@@ -29,6 +35,7 @@
 import { ref, reactive } from 'vue'
 import EditTable from '../components/EditTable/EditTable.vue'
 import EditInput from '../components/EditInput/EditInput.vue'
+import EditAutocomplete from '../components/EditAutocomplete/EditAutocomplete.vue'
 
 // table
 const defaultSort = reactive({ prop: 'name', order: 'descending' })
@@ -116,6 +123,11 @@ const suffixIcon = ref('el-icon-date')
 const prefixIcon = ref('el-icon-date')
 const inputChange = (val) => {
   console.log(val, input.value)
+}
+// autocomplete
+const autoc = ref('')
+const querySearch = (queryString, cb) => {
+  console.log(queryString, cb)
 }
 </script>
 

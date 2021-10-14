@@ -20,4 +20,7 @@ export default defineComponent({
   width 100%
   height 100%
 }
+.mt{
+  margin-top 20px
+}
 </style>
