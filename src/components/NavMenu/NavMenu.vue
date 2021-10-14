@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 <template>
   <el-menu
     :default-active="DefaultActive"
@@ -16,10 +17,12 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, toRefs } from 'vue'
+import { toRefs } from 'vue'
 import NavMenuItem from './comps/NavMenuItem.vue'
 import type { NavMenuEdit } from './type'
 
+/* global defineProps */
+/* eslint no-undef: "error" */
 const props: NavMenuEdit = defineProps({
   BackgroundColor: String,
   TextColor: String,

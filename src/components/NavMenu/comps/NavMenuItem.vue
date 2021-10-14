@@ -22,8 +22,9 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, toRefs } from 'vue'
-
+import { toRefs } from 'vue'
+/* global defineProps  */
+/* eslint no-undef: "error" */
 const props: any = defineProps({
   dropDownData: Object,
   isCollapse: Boolean
