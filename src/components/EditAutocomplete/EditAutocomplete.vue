@@ -25,14 +25,21 @@ import { toRefs } from 'vue'
 /* global defineProps,defineEmits  */
 /* eslint no-undef: "error" */
 const props = defineProps({
-  value: String
+  value: String,
+  size: String,
+  maxlength: Number,
+  disabled: Boolean,
+  clearable: Boolean,
+  suffixIcon: String,
+  prefixIcon: String,
+  placeholder: String
 })
 const { value } = toRefs(props)
 const emit = defineEmits(['querySearch'])
-const querySearch = (queryString: string, cb) => {
+const querySearch = (queryString: string, cb: (arg: any) => void) => {
   emit('querySearch', queryString, cb)
 }
-const handleSelect = (item) => {
+const handleSelect = (item: object) => {
   console.log(item)
 }
 </script>

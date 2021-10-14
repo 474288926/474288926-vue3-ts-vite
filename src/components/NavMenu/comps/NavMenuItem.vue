@@ -13,10 +13,12 @@
         </template>
         <nav-menu-item :dropDownData="item.children"></nav-menu-item>
       </el-sub-menu>
-      <el-menu-item v-else :key="item.path" :index="item.path">
-        <i :class="item.icon || null"></i>
-        <template #title>{{ item.name }}</template>
-      </el-menu-item>
+      <template v-else>
+        <el-menu-item :key="item.path" :index="item.path">
+          <i :class="item.icon || null"></i>
+          <template #title>{{ item.name }}</template>
+        </el-menu-item>
+      </template>
     </template>
   </div>
 </template>

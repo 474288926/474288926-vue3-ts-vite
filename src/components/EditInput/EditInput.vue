@@ -18,11 +18,10 @@
 
 <script setup lang="ts">
 import { toRefs } from 'vue'
-import type { inputEdit } from './type'
 
 /* global defineProps,defineEmits  */
 /* eslint no-undef: "error" */
-const props: inputEdit = defineProps({
+const props = defineProps({
   value: String,
   type: {
     type: String,
@@ -65,7 +64,7 @@ const {
 } = toRefs(props)
 
 const emit = defineEmits(['inputChange'])
-const inputChange = (val) => {
+const inputChange = (val: string) => {
   // console.log(val)
   emit('inputChange', val)
 }

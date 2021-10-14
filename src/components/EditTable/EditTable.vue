@@ -44,7 +44,7 @@
           :key="index"
           :type="v.type"
           :size="v.size"
-          @click.native.prevent="v.method"
+          @click.prevent="v.method"
           >{{ v.label }}</el-button
         >
       </template>
@@ -54,13 +54,12 @@
 
 <script setup lang="ts">
 import { toRefs } from 'vue'
-import type { tableEdit } from './type'
 
 /* global defineProps */
 /* eslint no-undef: "error" */
-const props: tableEdit = defineProps({
+const props = defineProps({
   tableData: Array,
-  columns: Array,
+  columns: Array as any,
   tableHandle: Object,
   treeProps: {
     type: Object,
@@ -86,32 +85,31 @@ const { tableData, columns, tableHandle, treeProps, selection, expand, defaultSo
   toRefs(props)
 
 // 设置行的高亮
-const tableRowClassName = ({ row, rowIndex }) => {
-  if (row.name === 'Tom') {
+const tableRowClassName = (obj: { row: any; rowIndex: number }) => {
+  if (obj.row.name === 'Tom') {
     return 'warning-row'
   }
-  if (rowIndex === 3) {
+  if (obj.rowIndex === 1) {
     return 'success-row'
   }
   return ''
 }
 // 点击行执行
-const handleCurrentChange = (val) => {
+const handleCurrentChange = (val: any) => {
   console.log(val)
 }
 // 勾选行执行
-const handleSelectionChange = (val) => {
+const handleSelectionChange = (val: any) => {
   console.log(val)
 }
-
 // 懒加载
-const load = (tree, treeNode, resolve) => {
+const load = (tree: any, treeNode: any, resolve: any) => {
   setTimeout(() => {
     resolve([
       {
         id: 31,
         date: '2016-05-01',
-        name: 'wangxiaohu'
+        name: 'Tom'
       },
       {
         id: 32,

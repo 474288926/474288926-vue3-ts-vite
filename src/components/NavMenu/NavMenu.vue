@@ -19,11 +19,10 @@
 <script setup lang="ts">
 import { toRefs } from 'vue'
 import NavMenuItem from './comps/NavMenuItem.vue'
-import type { NavMenuEdit } from './type'
 
 /* global defineProps */
 /* eslint no-undef: "error" */
-const props: NavMenuEdit = defineProps({
+const props = defineProps({
   BackgroundColor: String,
   TextColor: String,
   ActiveTextColor: String,

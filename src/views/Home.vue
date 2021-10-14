@@ -58,11 +58,12 @@ const tableData = reactive([
   {
     id: 4,
     date: '2016-05-03',
-    name: 'wangxiaohu'
+    name: 'Tom'
   }
 ])
 // table标签过滤方法
-const filterHandler = (value, row, column) => {
+const filterHandler = (value: string, row: any, column: any) => {
+  console.log(column)
   const { property } = column
   return row[property] === value
 }
@@ -121,12 +122,12 @@ const clearable = ref(true)
 const showPassword = ref(false)
 const suffixIcon = ref('el-icon-date')
 const prefixIcon = ref('el-icon-date')
-const inputChange = (val) => {
+const inputChange = (val: string) => {
   console.log(val, input.value)
 }
 // autocomplete
 const autoc = ref('')
-const querySearch = (queryString, cb) => {
+const querySearch = (queryString: string, cb: (arg: any) => void) => {
   console.log(queryString, cb)
 }
 </script>
