@@ -23,7 +23,10 @@ import {
   ElTable,
   ElTableColumn,
   ElInput,
-  ElAutocomplete
+  ElAutocomplete,
+  ElSelect,
+  ElOption,
+  ElOptionGroup
 } from 'element-plus'
 
 /**
@@ -56,7 +59,10 @@ export default function styleImport(app: App) {
     ElTable,
     ElTableColumn,
     ElInput,
-    ElAutocomplete
+    ElAutocomplete,
+    ElSelect,
+    ElOption,
+    ElOptionGroup
   ].forEach((v) => {
     app.use(v)
   })

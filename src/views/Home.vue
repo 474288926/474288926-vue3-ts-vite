@@ -36,6 +36,16 @@
       :prefixIcon="autocompleteEdit.prefixIcon"
       @querySearch="querySearch"
     ></edit-autocomplete>
+    <edit-select
+      calss="mt"
+      :loading="loading"
+      v-model="selectValue"
+      :options="options"
+      :filterable="filterable"
+      :remote="remote"
+      :reserve-keyword="ReserveKeyword"
+      @remoteMethod="remoteMethod"
+    ></edit-select>
   </div>
 </template>
 
@@ -44,8 +54,9 @@ import { ref, reactive, onMounted } from 'vue'
 import EditTable from '../components/EditTable/EditTable.vue'
 import EditInput from '../components/EditInput/EditInput.vue'
 import EditAutocomplete from '../components/EditAutocomplete/EditAutocomplete.vue'
+import EditSelect from '../components/EditSelect/EditSelect.vue'
 
-// table
+/* ===============table============================= */
 const defaultSort = reactive({ prop: 'name', order: 'descending' })
 const tableData = reactive([
   {
@@ -118,7 +129,7 @@ const tableHandle = reactive({
   ]
 })
 
-// input
+/* ===============input============================= */
 // 数据源
 const input = ref('')
 // 配置项
@@ -136,7 +147,7 @@ const prefixIcon = ref('el-icon-date')
 const inputChange = (val: string) => {
   console.log(val, input.value)
 }
-// autocomplete
+/* ===============autocomplete============================= */
 // 配置项
 const autocompleteEdit = reactive({
   size: 'mini',
@@ -186,6 +197,86 @@ const querySearch = (queryString: string, cb: (arg: any) => void) => {
   timeout = setTimeout(() => {
     cb(results)
   }, 3000 * Math.random())
+}
+/* ===============select============================= */
+// 输入数据源
+const selectValue = ref('')
+// 配置项
+const filterable = ref(true)
+const remote = ref(true)
+const ReserveKeyword = ref(true)
+const list: any = reactive([])
+const options: any = ref([])
+const loading = ref(false)
+const states = [
+  'Alabama',
+  'Alaska',
+  'Arizona',
+  'Arkansas',
+  'California',
+  'Colorado',
+  'Connecticut',
+  'Delaware',
+  'Florida',
+  'Georgia',
+  'Hawaii',
+  'Idaho',
+  'Illinois',
+  'Indiana',
+  'Iowa',
+  'Kansas',
+  'Kentucky',
+  'Louisiana',
+  'Maine',
+  'Maryland',
+  'Massachusetts',
+  'Michigan',
+  'Minnesota',
+  'Mississippi',
+  'Missouri',
+  'Montana',
+  'Nebraska',
+  'Nevada',
+  'New Hampshire',
+  'New Jersey',
+  'New Mexico',
+  'New York',
+  'North Carolina',
+  'North Dakota',
+  'Ohio',
+  'Oklahoma',
+  'Oregon',
+  'Pennsylvania',
+  'Rhode Island',
+  'South Carolina',
+  'South Dakota',
+  'Tennessee',
+  'Texas',
+  'Utah',
+  'Vermont',
+  'Virginia',
+  'Washington',
+  'West Virginia',
+  'Wisconsin',
+  'Wyoming'
+]
+onMounted(() => {
+  list.value = states.map((item) => {
+    return { value: `value:${item}`, label: `label:${item}` }
+  })
+})
+const remoteMethod = (query: string) => {
+  if (query !== '') {
+    loading.value = true
+    setTimeout(() => {
+      loading.value = false
+      options.value = list.value.filter((item: any) => {
+        return item.label.toLowerCase().indexOf(query.toLowerCase()) > -1
+      })
+    }, 200)
+  } else {
+    options.value = []
+  }
 }
 </script>
 
