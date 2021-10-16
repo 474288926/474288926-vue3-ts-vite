@@ -26,7 +26,9 @@ import {
   ElAutocomplete,
   ElSelect,
   ElOption,
-  ElOptionGroup
+  ElOptionGroup,
+  ElCascader,
+  ElCascaderPanel
 } from 'element-plus'
 
 /**
@@ -62,7 +64,9 @@ export default function styleImport(app: App) {
     ElAutocomplete,
     ElSelect,
     ElOption,
-    ElOptionGroup
+    ElOptionGroup,
+    ElCascader,
+    ElCascaderPanel
   ].forEach((v) => {
     app.use(v)
   })
