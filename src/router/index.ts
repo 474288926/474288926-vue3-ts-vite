@@ -38,6 +38,34 @@ const routes = [
         name: 'Test',
         icon: 'el-icon-menu',
         component: Test
+      },
+      {
+        path: '/example',
+        name: '组件示例',
+        icon: 'el-icon-menu',
+        component: () => import('../views/Example/Example.vue'),
+        children: [
+          {
+            path: '/table',
+            name: 'table：表格',
+            component: () => import('../views/Example/comps/table.vue')
+          },
+          {
+            path: '/input',
+            name: 'input：输入框',
+            component: () => import('../views/Example/comps/input.vue')
+          },
+          {
+            path: '/select',
+            name: 'select：下拉框',
+            component: () => import('../views/Example/comps/select.vue')
+          },
+          {
+            path: '/cascader',
+            name: 'cascader：级联选择器',
+            component: () => import('../views/Example/comps/cascader.vue')
+          }
+        ]
       }
     ] as AppRouteRecordRaw[]
   }

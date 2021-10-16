@@ -9,7 +9,7 @@
     :remote="remote"
     :reserve-keyword="ReserveKeyword"
     :collapse-tags="CollapseTags"
-    placeholder="Select"
+    :placeholder="placeholder"
     :remote-method="remoteMethod"
     :loading="loading"
   >
@@ -64,6 +64,7 @@ const props = defineProps({
       return false
     }
   },
+  placeholder: String,
   options: {
     type: Array,
     default() {
@@ -136,7 +137,8 @@ const {
   CollapseTags,
   loading,
   OptionGroup,
-  options
+  options,
+  placeholder
 } = toRefs(props)
 const emit = defineEmits(['remoteMethod'])
 const remoteMethod = (query: string) => {
