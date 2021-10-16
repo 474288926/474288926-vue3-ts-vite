@@ -57,13 +57,18 @@ const routes = [
           },
           {
             path: '/select',
-            name: 'select：下拉框',
+            name: 'select：选择框',
             component: () => import('../views/Example/comps/select.vue')
           },
           {
             path: '/cascader',
             name: 'cascader：级联选择器',
             component: () => import('../views/Example/comps/cascader.vue')
+          },
+          {
+            path: '/checkbox',
+            name: 'checkbox：多选框',
+            component: () => import('../views/Example/comps/checkbox.vue')
           }
         ]
       }

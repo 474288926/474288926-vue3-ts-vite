@@ -28,7 +28,10 @@ import {
   ElOption,
   ElOptionGroup,
   ElCascader,
-  ElCascaderPanel
+  ElCascaderPanel,
+  ElCheckbox,
+  ElCheckboxGroup,
+  ElCheckboxButton
 } from 'element-plus'
 
 /**
@@ -66,7 +69,10 @@ export default function styleImport(app: App) {
     ElOption,
     ElOptionGroup,
     ElCascader,
-    ElCascaderPanel
+    ElCascaderPanel,
+    ElCheckbox,
+    ElCheckboxGroup,
+    ElCheckboxButton
   ].forEach((v) => {
     app.use(v)
   })

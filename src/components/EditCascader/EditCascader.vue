@@ -23,7 +23,8 @@
 <script setup lang="ts">
 import { toRefs } from 'vue'
 
-// eslint-disable-next-line no-undef
+/* global defineProps,defineEmits  */
+/* eslint no-undef: "error" */
 const props = defineProps({
   value: String || Number,
   size: {
@@ -42,7 +43,6 @@ const props = defineProps({
   }
 })
 const { value, options, editRender, panel, size } = toRefs(props)
-// eslint-disable-next-line no-undef
 const emit = defineEmits(['handleChange'])
 const handleChange = (v: string | number) => {
   emit('handleChange', v)
