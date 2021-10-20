@@ -69,6 +69,11 @@ const routes = [
             path: '/checkbox',
             name: 'checkbox：多选框',
             component: () => import('../views/Example/comps/checkbox.vue')
+          },
+          {
+            path: '/datepicker',
+            name: 'datepicker：日期选择器',
+            component: () => import('../views/Example/comps/datepicker.vue')
           }
         ]
       }
