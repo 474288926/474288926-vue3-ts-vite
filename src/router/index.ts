@@ -43,37 +43,42 @@ const routes = [
         path: '/example',
         name: '组件示例',
         icon: 'el-icon-menu',
-        component: () => import('../views/Example/Example.vue'),
+        component: () => import('@/views/Example/Example.vue'),
         children: [
           {
             path: '/table',
             name: 'table：表格',
-            component: () => import('../views/Example/comps/table.vue')
+            component: () => import('@/views/Example/comps/table.vue')
           },
           {
             path: '/input',
             name: 'input：输入框',
-            component: () => import('../views/Example/comps/input.vue')
+            component: () => import('@/views/Example/comps/input.vue')
           },
           {
             path: '/select',
             name: 'select：选择框',
-            component: () => import('../views/Example/comps/select.vue')
+            component: () => import('@/views/Example/comps/select.vue')
           },
           {
             path: '/cascader',
             name: 'cascader：级联选择器',
-            component: () => import('../views/Example/comps/cascader.vue')
+            component: () => import('@/views/Example/comps/cascader.vue')
           },
           {
             path: '/checkbox',
             name: 'checkbox：多选框',
-            component: () => import('../views/Example/comps/checkbox.vue')
+            component: () => import('@/views/Example/comps/checkbox.vue')
           },
           {
             path: '/datepicker',
             name: 'datepicker：日期选择器',
-            component: () => import('../views/Example/comps/datepicker.vue')
+            component: () => import('@/views/Example/comps/datepicker.vue')
+          },
+          {
+            path: '/button',
+            name: 'button：按钮',
+            component: () => import('@/views/Example/comps/button.vue')
           }
         ]
       }
