@@ -26,9 +26,17 @@
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import NavMenu from '../../components/NavMenu/NavMenu.vue'
+import { apiCs } from '../../utils/api'
 
+// 输出当前环境
+console.log(process.env.NODE_ENV)
+const cs = () => {
+  apiCs().then((res) => {
+    console.log(res)
+  })
+}
+cs()
 // const isCollapse = ref(true)
-
 const router = useRouter()
 const route = useRoute()
 // console.log(route.path)

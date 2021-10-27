@@ -1,7 +1,7 @@
 import Axios, { AxiosInstance } from 'axios'
 import { ElMessage } from 'element-plus'
 
-const baseURL = 'https://api.github.com'
+const baseURL = '/api'
 
 const axios: AxiosInstance = Axios.create({
   baseURL,
@@ -29,7 +29,7 @@ axios.interceptors.response.use(
      * 根据你的项目实际情况来对 response 和 error 做处理
      * 这里对 response 和 error 不做任何处理，直接返回
      */
-    return response
+    return response.data
   },
   (error) => {
     if (error.response && error.response.data) {
