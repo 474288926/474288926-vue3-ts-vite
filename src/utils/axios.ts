@@ -1,7 +1,17 @@
 import Axios, { AxiosInstance } from 'axios'
 import { ElMessage } from 'element-plus'
 
-const baseURL = '/api'
+let baseURL
+switch (process.env.VITE_MODE_NAME) {
+  case 'development':
+    baseURL = '/api'
+    break
+  case 'test':
+    baseURL = process.env.VITE_RES_URL
+    break
+  default:
+    baseURL = process.env.VITE_RES_URL
+}
 
 const axios: AxiosInstance = Axios.create({
   baseURL,

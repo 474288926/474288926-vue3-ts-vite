@@ -10,6 +10,9 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, __dirname)
   return {
     plugins: [vue(), importElementPlus({})],
+    define: {
+      'process.env': env
+    },
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src') // 设置 `@` 指向 `src` 目录
