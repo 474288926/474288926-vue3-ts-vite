@@ -26,14 +26,16 @@
       :round="round"
       :circle="circle"
       :disabled="disabled"
+      @click="click"
     >
       <slot></slot>
     </el-button>
+    <span>Provide / Inject 测试----- {{ userLocation }}-{{ userGeolocation }}</span>
   </template>
 </template>
 
 <script setup lang="ts">
-import { toRefs, computed } from 'vue'
+import { toRefs, inject } from 'vue'
 /* global defineProps,defineEmits  */
 /* eslint no-undef: "error" */
 const props = defineProps({
@@ -90,10 +92,19 @@ const props = defineProps({
     default() {
       return 'mini'
     }
+  },
+  click: {
+    type: Function,
+    default: () => {}
   }
 })
 const { type, plain, round, disabled, icon, loading, buttonGroup, circle, size } =
   toRefs(props)
+// 子组件 inject
+const userLocation = inject('location', 25)
+const userGeolocation = inject('geolocation')
+const updateUserLocation = inject('updateLocation')
+console.log(userGeolocation, userLocation)
 </script>
 
 <style scoped></style>
