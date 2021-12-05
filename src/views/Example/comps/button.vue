@@ -5,6 +5,7 @@
       <edit-button icon="el-icon-search" :round="true" :click="updateLocation"
         >按钮</edit-button
       >
+      <el-input v-model="input" size="mini" class="mt" @input="inputChange"></el-input>
     </el-col>
     <el-col>
       <h1>group按钮</h1>
@@ -33,14 +34,19 @@ const geolocation = reactive({
   longitude: 90,
   latitude: 135
 })
+const input = ref(location.value)
 const updateLocation = () => {
   location.value = Math.round(Math.random() * 100)
   geolocation.latitude = Math.round(Math.random() * 1000)
   geolocation.longitude = Math.round(Math.random() * 10000)
+  input.value = location.value
+}
+const inputChange = (value: number) => {
+  location.value = value
 }
 provide('location', location)
 provide('geolocation', geolocation)
-provide('updateLocation', updateLocation)
+provide('updateLocation', inputChange)
 </script>
 
 <style scoped></style>

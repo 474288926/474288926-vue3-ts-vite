@@ -101,10 +101,10 @@ const props = defineProps({
 const { type, plain, round, disabled, icon, loading, buttonGroup, circle, size } =
   toRefs(props)
 // 子组件 inject
+
 const userLocation = inject('location', 25)
 const userGeolocation = inject('geolocation')
 const updateUserLocation = inject('updateLocation')
-console.log(userGeolocation, userLocation)
 </script>
 
 <style scoped></style>
