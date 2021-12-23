@@ -31,7 +31,7 @@ let reqList = [] as Array<string | undefined>
 const stopRepeatRequest = (
   req: Array<string | undefined>,
   url: string | undefined,
-  cancel: Function | undefined,
+  cancel: Function,
   errorMessage: string
 ) => {
   const errorMsg = errorMessage || ''
@@ -61,7 +61,7 @@ const allowRequest = (req: Array<string | undefined>, url: string | undefined) =
 // 前置拦截器（发起请求之前的拦截）
 axios.interceptors.request.use(
   (config) => {
-    let cancel
+    let cancel: Function = () => {}
     // 设置cancelToken对象
     config.cancelToken = new Axios.CancelToken((c) => {
       cancel = c
