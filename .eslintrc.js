@@ -31,7 +31,9 @@ module.exports = {
       }
     ],
     // 解决console语法报错
-    'no-console': 'off'
+    'no-console': 'off',
+    // 关闭let转化成const
+    'prefer-const': 0
   },
   settings: {}
 }

@@ -1,6 +1,9 @@
 <template>
   <el-container>
-    <el-header>Header</el-header>
+    <el-header
+      >Header
+      <el-button size="mini" @click="cs">接口请求测试</el-button>
+    </el-header>
     <el-container>
       <el-aside width="200px">
         <nav-menu
@@ -35,7 +38,6 @@ const cs = () => {
     console.log(res)
   })
 }
-cs()
 // const isCollapse = ref(true)
 const router = useRouter()
 const route = useRoute()
