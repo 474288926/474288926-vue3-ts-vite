@@ -1,15 +1,15 @@
 <template>
   <el-row>
     <el-col>
-      <h1>input</h1>
+      <h1>input{{ input }}</h1>
       <edit-input
         v-bind="inputEdit"
         v-model="input"
-        @inputChange="inputChange"
+        :input-change="inputChange"
       ></edit-input>
     </el-col>
     <el-col class="mt">
-      <h1>自动补全AND远程搜索input</h1>
+      <h1>自动补全AND远程搜索input{{ autoValue }}</h1>
       <edit-autocomplete
         v-bind="autocompleteEdit"
         v-model="autoValue"
@@ -80,7 +80,8 @@ onMounted(() => {
   links.value = loadAll()
 })
 // 设置时间
-let timeout: number
+// eslint-disable-next-line no-undef
+let timeout: NodeJS.Timeout
 // 数据筛选方法
 const createFilter = (queryString: string) => {
   return (restaurant: any) => {

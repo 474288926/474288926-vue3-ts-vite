@@ -41,6 +41,12 @@ const props = defineProps({
       return false
     }
   },
+  inputChange: {
+    type: Function,
+    default() {
+      return () => {}
+    }
+  },
   placeholder: String,
   maxlength: Number,
   disabled: Boolean,
@@ -60,14 +66,9 @@ const {
   clearable,
   showPassword,
   suffixIcon,
-  prefixIcon
+  prefixIcon,
+  inputChange
 } = toRefs(props)
-
-const emit = defineEmits(['inputChange'])
-const inputChange = (val: string) => {
-  // console.log(val)
-  emit('inputChange', val)
-}
 </script>
 
 <style scoped></style>
