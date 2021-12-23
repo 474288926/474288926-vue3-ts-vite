@@ -3,7 +3,7 @@
     :type="type"
     :autosize="autosize"
     @input="inputChange($event)"
-    :value="value"
+    v-bind="value"
     :size="size"
     show-word-limit
     :maxlength="maxlength"

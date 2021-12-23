@@ -1,7 +1,7 @@
 <template>
   <el-select
     :size="size"
-    :value="value"
+    v-bind="value"
     :disabled="disabled"
     :filterable="filterable"
     :clearable="clearable"

@@ -2,7 +2,7 @@
   <el-cascader
     v-if="!panel"
     :size="size"
-    :value="value"
+    v-bind="value"
     clearable
     :options="options"
     :show-all-levels="true"

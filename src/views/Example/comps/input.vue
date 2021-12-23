@@ -2,7 +2,11 @@
   <el-row>
     <el-col>
       <h1>input-{{ input }}</h1>
-      <edit-input v-bind="inputEdit" v-model="input"></edit-input>
+      <edit-input
+        v-bind="inputEdit"
+        v-model="input"
+        :input-change="inputChange"
+      ></edit-input>
     </el-col>
     <el-col class="mt">
       <h1>自动补全AND远程搜索input-{{ autoValue }}</h1>
@@ -39,9 +43,9 @@ const inputEdit = reactive({
   prefixIcon: 'el-icon-date'
 })
 // input方法
-// const inputChange = (val: string) => {
-//   console.log(val, input.value)
-// }
+const inputChange = (val: string) => {
+  console.log(val, input.value)
+}
 
 /* ===============autocomplete============================= */
 const autoValue = ref('')

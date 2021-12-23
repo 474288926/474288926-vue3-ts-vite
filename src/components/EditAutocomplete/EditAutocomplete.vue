@@ -1,7 +1,7 @@
 <template>
   <el-autocomplete
     :size="size"
-    :value="value"
+    v-bind="value"
     :fetch-suggestions="querySearch"
     :trigger-on-focus="false"
     class="inline-input"
