@@ -1,6 +1,6 @@
 <template>
   <el-date-picker
-    :value="value"
+    v-bind="value"
     :type="type"
     :placeholder="placeholder"
     :disabled-date="disabledDate"

@@ -3,16 +3,16 @@
     <el-col>
       <h1>配置单日期选择器</h1>
       <edit-date-picker
-        v-model="value"
-        :shortcuts="shortcuts"
+        v-model="state.value"
+        :shortcuts="state.shortcuts"
         :type="type"
       ></edit-date-picker>
     </el-col>
     <el-col>
       <h1>配置范围日期选择器</h1>
       <edit-date-picker
-        v-model="value1"
-        :shortcuts="shortcuts1"
+        v-model="state.value1"
+        :shortcuts="state.shortcuts1"
         :type="typeRange"
         :default-time="defaultTime"
         :default-value="defaultValue"
@@ -21,8 +21,8 @@
     <el-col>
       <h1>配置范围月份选择器</h1>
       <edit-date-picker
-        v-model="value2"
-        :shortcuts="shortcuts2"
+        v-model="state.value2"
+        :shortcuts="state.shortcuts2"
         :type="typeMonth"
       ></edit-date-picker>
     </el-col>
@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, toRefs, Ref } from 'vue'
+import { ref, reactive, Ref } from 'vue'
 import EditDatePicker from '../../../components/EditDatePicker/EditDatePicker.vue'
 
 type dateType =
@@ -130,7 +130,6 @@ const state = reactive({
   value1: '',
   value2: ''
 })
-const { shortcuts, shortcuts1, shortcuts2, value, value1, value2 } = toRefs(state)
 </script>
 
 <style scoped></style>

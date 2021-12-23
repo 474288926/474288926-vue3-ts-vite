@@ -3,7 +3,7 @@
   <template v-if="isCheckAll">
     <el-checkbox-group
       :size="size"
-      :value="checkList"
+      v-bind="value"
       :min="0"
       :max="10"
       @change="handleCheckedCitiesChange"
@@ -19,7 +19,7 @@
   <template v-else>
     <el-checkbox-group
       :size="size"
-      :value="checkList"
+      v-bind="value"
       :min="0"
       :max="10"
       @change="handleCheckedCitiesChange"
@@ -70,7 +70,7 @@ const props = defineProps({
     }
   },
   options: Array,
-  checkList: Array
+  value: Array
 })
 const { size, options, isCheckAll, isCheckButton, checkList } = toRefs(props)
 const emit = defineEmits(['handleCheckedCitiesChange'])
