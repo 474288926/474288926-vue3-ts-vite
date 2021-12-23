@@ -1,7 +1,10 @@
 <template>
   <el-row>
     <el-col>
-      <h1>input{{ input }}</h1>
+      <el-input v-model="input2"></el-input>
+    </el-col>
+    <el-col>
+      <h1>input-{{ input }}</h1>
       <edit-input
         v-bind="inputEdit"
         v-model="input"
@@ -9,7 +12,7 @@
       ></edit-input>
     </el-col>
     <el-col class="mt">
-      <h1>自动补全AND远程搜索input{{ autoValue }}</h1>
+      <h1>自动补全AND远程搜索input-{{ autoValue }}</h1>
       <edit-autocomplete
         v-bind="autocompleteEdit"
         v-model="autoValue"
@@ -26,6 +29,7 @@ import EditAutocomplete from '../../../components/EditAutocomplete/EditAutocompl
 
 /* ===============input============================= */
 // 数据源
+const input2 = ref('')
 const input = ref('')
 // 配置项
 
