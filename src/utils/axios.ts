@@ -22,10 +22,10 @@ const axios: AxiosInstance = Axios.create({
 let reqList = [] as Array<string | undefined>
 /**
  * 阻止重复请求
-//  * @param {Array<string>} req - 请求缓存列表
-//  * @param {string} url - 当前请求地址
-//  * @param {function} cancel - 请求中断函数
-//  * @param { string} errorMessage - 请求中断时需显示的错误信息
+ * @param {Array<string>} req - 请求缓存列表
+ * @param {string} url - 当前请求地址
+ * @param {function} cancel - 请求中断函数
+ * @param { string} errorMessage - 请求中断时需显示的错误信息
  * */
 
 const stopRepeatRequest = (
