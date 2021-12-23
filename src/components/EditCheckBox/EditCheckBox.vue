@@ -6,7 +6,7 @@
       v-bind="value"
       :min="0"
       :max="10"
-      @change="handleCheckedCitiesChange"
+      @change="handleCheckedCitiesChange($event)"
     >
       <template v-if="isCheckButton">
         <el-checkbox-button v-for="(v, index) in options" :key="index" :label="v" />
@@ -22,7 +22,7 @@
       v-bind="value"
       :min="0"
       :max="10"
-      @change="handleCheckedCitiesChange"
+      @change="handleCheckedCitiesChange($event)"
     >
       <template v-if="isCheckButton">
         <el-checkbox-button
@@ -69,14 +69,16 @@ const props = defineProps({
       return 'mini'
     }
   },
+  handleCheckedCitiesChange: {
+    type: Function,
+    default() {
+      return () => {}
+    }
+  },
   options: Array,
   value: Array
 })
-const { size, options, isCheckAll, isCheckButton, checkList } = toRefs(props)
-const emit = defineEmits(['handleCheckedCitiesChange'])
-const handleCheckedCitiesChange = (val: string[]) => {
-  emit('handleCheckedCitiesChange', val)
-}
+const { size, options, isCheckAll, isCheckButton, value } = toRefs(props)
 </script>
 
 <style scoped></style>

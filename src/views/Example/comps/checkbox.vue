@@ -2,11 +2,7 @@
   <el-row>
     <el-col>
       <h1>配置多选框</h1>
-      <edit-check-box
-        v-model="checkList"
-        :options="options"
-        :check-list="checkList"
-      ></edit-check-box>
+      <edit-check-box v-model="checkList" :options="options"></edit-check-box>
     </el-col>
     <el-col>
       <h1>带全选多选框</h1>
@@ -22,7 +18,7 @@
         v-model="checkList"
         :is-check-all="isCheckAll"
         :options="cityOptions"
-        :check-list="checkList"
+        :handle-checked-cities-change="handleCheckedCitiesChange"
       ></edit-check-box>
     </el-col>
   </el-row>
@@ -35,13 +31,12 @@ import EditCheckBox from '../../../components/EditCheckBox/EditCheckBox.vue'
 /* ===================================checked=============================== */
 // 配置项
 const isCheckAll = ref(true)
-const isCheckButton = ref(false)
 // 全选
 const checked = ref(false)
 // 初始数据
 const checkList = ref(['selected and disabled', 'Option A'])
 const isIndeterminate = ref(true)
-const cityOptions: string[] = [
+const cityOptions: Array<string> = [
   'Option A',
   'Option B',
   'Option C',
