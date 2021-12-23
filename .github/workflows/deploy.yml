@@ -29,6 +29,6 @@ jobs:
           github_token: ${{ secrets.ACCESS_TOKEN }}
           user_name: ${{ secrets.ACCESS_USER_NAME }}
           user_email: ${{ secrets.ACCESS_USER_EMAIL }}
-          repository-name: 474288926/474288926.github.io #github page 仓库
-          target-folder: github-actions-docs
+          # repository-name: 474288926/474288926.github.io #github page 仓库
+          # target-folder: github-actions-docs
           commit_message: Update Vite2.x + Vue3.x + TypeScript Starter
