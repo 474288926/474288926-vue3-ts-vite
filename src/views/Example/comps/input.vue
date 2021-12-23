@@ -3,32 +3,16 @@
     <el-col>
       <h1>input</h1>
       <edit-input
-        :type="type"
-        :size="size"
+        v-bind="inputEdit"
         v-model="input"
-        :autosize="autosize"
-        :placeholder="placeholder"
-        :maxlength="maxlength"
-        :disabled="disabled"
-        :clearable="clearable"
-        :showPassword="showPassword"
-        :suffixIcon="suffixIcon"
-        :prefixIcon="prefixIcon"
         @inputChange="inputChange"
       ></edit-input>
     </el-col>
     <el-col class="mt">
       <h1>自动补全AND远程搜索input</h1>
       <edit-autocomplete
-        :size="autocompleteEdit.size"
+        v-bind="autocompleteEdit"
         v-model="autoValue"
-        :placeholder="autocompleteEdit.placeholder"
-        :maxlength="autocompleteEdit.maxlength"
-        :disabled="autocompleteEdit.disabled"
-        :clearable="autocompleteEdit.clearable"
-        :showPassword="autocompleteEdit.showPassword"
-        :suffixIcon="autocompleteEdit.suffixIcon"
-        :prefixIcon="autocompleteEdit.prefixIcon"
         @querySearch="querySearch"
       ></edit-autocomplete>
     </el-col>
@@ -44,34 +28,37 @@ import EditAutocomplete from '../../../components/EditAutocomplete/EditAutocompl
 // 数据源
 const input = ref('')
 // 配置项
-const type = ref('text')
-const size = ref('mini')
-const autosize = ref(false)
-const placeholder = ref('输入框')
-const maxlength = ref(30)
-const disabled = ref(false)
-const clearable = ref(true)
-const showPassword = ref(false)
-const suffixIcon = ref('el-icon-date')
-const prefixIcon = ref('el-icon-date')
+
+const inputEdit = reactive({
+  type: 'text',
+  size: 'mini',
+  autosize: false,
+  placeholder: '输入框',
+  maxlength: 30,
+  disabled: false,
+  clearable: true,
+  showPassword: false,
+  suffixIcon: 'el-icon-date',
+  prefixIcon: 'el-icon-date'
+})
 // input方法
 const inputChange = (val: string) => {
   console.log(val, input.value)
 }
 
 /* ===============autocomplete============================= */
+const autoValue = ref('')
 // 配置项
 const autocompleteEdit = reactive({
   size: 'mini',
   maxlength: 10,
   disabled: false,
   clearable: true,
+  showPassword: false,
   suffixIcon: 'el-icon-date',
   prefixIcon: 'el-icon-date',
   placeholder: 'autocomplete'
 })
-// 数据源
-const autoValue = ref('')
 // 远程数据模拟
 type linkType = {
   value: String

@@ -3,13 +3,8 @@
     <el-col>
       <h1>select可配置远程搜索</h1>
       <edit-select
-        :loading="loading"
+        v-bind="selectEdit"
         v-model="selectValue"
-        :options="options"
-        :filterable="filterable"
-        :remote="remote"
-        :placeholder="placeholder"
-        :reserve-keyword="ReserveKeyword"
         @remoteMethod="remoteMethod"
       ></edit-select>
     </el-col>
@@ -24,13 +19,16 @@ import EditSelect from '../../../components/EditSelect/EditSelect.vue'
 // 输入数据源
 const selectValue = ref('')
 // 配置项
-const placeholder = ref('可配置远程搜索')
-const filterable = ref(true)
-const remote = ref(true)
-const ReserveKeyword = ref(true)
+
+const selectEdit = reactive({
+  placeholder: '可配置远程搜索',
+  filterable: true,
+  remote: true,
+  ReserveKeyword: true,
+  options: [],
+  loading: false
+})
 const list: any = reactive([])
-const options: any = ref([])
-const loading = ref(false)
 const states = [
   'Alabama',
   'Alaska',
@@ -47,15 +45,15 @@ onMounted(() => {
 })
 const remoteMethod = (query: string) => {
   if (query !== '') {
-    loading.value = true
+    selectEdit.loading = true
     setTimeout(() => {
-      loading.value = false
-      options.value = list.value.filter((item: any) => {
+      selectEdit.loading = false
+      selectEdit.options = list.value.filter((item: any) => {
         return item.label.toLowerCase().indexOf(query.toLowerCase()) > -1
       })
     }, 200)
   } else {
-    options.value = []
+    selectEdit.options = []
   }
 }
 </script>
