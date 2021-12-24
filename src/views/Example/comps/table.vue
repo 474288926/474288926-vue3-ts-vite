@@ -3,6 +3,7 @@
     <el-col>
       <h1>可配置table</h1>
       <edit-table
+        ref="editable"
         :table-data="tableData"
         :columns="columns"
         :table-handle="tableHandle"
@@ -13,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import EditTable from '../../../components/EditTable/EditTable.vue'
 /* ===============table============================= */
 const defaultSort = reactive({ prop: 'name', order: 'descending' })
@@ -86,6 +87,12 @@ const tableHandle = reactive({
       method: handleClick
     }
   ]
+})
+
+const editable = ref()
+onMounted(() => {
+  let c = editable.value.sum(5, 9)
+  console.log(c)
 })
 </script>
 

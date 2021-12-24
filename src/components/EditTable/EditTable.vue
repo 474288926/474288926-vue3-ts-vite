@@ -4,6 +4,7 @@
     style="width: 100%"
     :default-sort="defaultSort"
     ref="editTable"
+    class="one two"
     border
     row-key="id"
     highlight-current-row
@@ -55,7 +56,7 @@
 <script setup lang="ts">
 import { toRefs } from 'vue'
 
-/* global defineProps */
+/* global defineProps,defineExpose */
 /* eslint no-undef: "error" */
 const props = defineProps({
   tableData: Array,
@@ -102,6 +103,10 @@ const handleCurrentChange = (val: any) => {
 const handleSelectionChange = (val: any) => {
   console.log(val)
 }
+// 计算
+const sum = (a: number, b: number) => {
+  return a + b
+}
 // 懒加载
 const load = (tree: any, treeNode: any, resolve: any) => {
   setTimeout(() => {
@@ -119,6 +124,9 @@ const load = (tree: any, treeNode: any, resolve: any) => {
     ])
   }, 1000)
 }
+defineExpose({
+  sum
+})
 </script>
 
 <style lang="stylus" scoped>
