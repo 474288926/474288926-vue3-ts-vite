@@ -1,7 +1,19 @@
-import { createRouter, createWebHashHistory, Router, RouteRecordRaw } from 'vue-router'
+import {
+  createRouter,
+  createWebHashHistory,
+  Router,
+  Route,
+  RouteRecordRaw
+} from 'vue-router'
+
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
 import Home from '@/views/Home.vue'
 import Vuex from '@/views/Vuex.vue'
 import Test from '@/views/Test.vue'
+
+NProgress.configure({ showSpinner: false })
 
 const layout = () => import('../views/layout/layout.vue')
 
@@ -89,6 +101,15 @@ const routes = [
 const router: Router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+router.beforeEach(async (to: Route, from: Route, next: () => void) => {
+  NProgress.start()
+  next()
+})
+
+router.afterEach((to: Route) => {
+  NProgress.done()
 })
 
 export default router

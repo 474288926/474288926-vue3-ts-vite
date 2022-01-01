@@ -1,5 +1,9 @@
 import Axios, { AxiosInstance } from 'axios'
 import { ElMessage } from 'element-plus'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
+NProgress.configure({ showSpinner: false })
 
 let baseURL
 switch (process.env.VITE_MODE_NAME) {
@@ -61,6 +65,7 @@ const allowRequest = (req: Array<string | undefined>, url: string | undefined) =
 // 前置拦截器（发起请求之前的拦截）
 axios.interceptors.request.use(
   (config) => {
+    NProgress.start()
     let cancel: Function = () => {}
     // 设置cancelToken对象
     config.cancelToken = new Axios.CancelToken((c) => {
@@ -75,6 +80,7 @@ axios.interceptors.request.use(
     return config
   },
   (error) => {
+    NProgress.done()
     return Promise.reject(error)
   }
 )
@@ -90,6 +96,7 @@ axios.interceptors.response.use(
      * 根据你的项目实际情况来对 response 和 error 做处理
      * 这里对 response 和 error 不做任何处理，直接返回
      */
+    NProgress.done()
     return response.data
   },
   (error) => {
@@ -109,6 +116,7 @@ axios.interceptors.response.use(
     } else {
       ElMessage.error(`${error}`)
     }
+    NProgress.done()
     return Promise.reject(error)
   }
 )
