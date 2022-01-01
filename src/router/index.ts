@@ -95,6 +95,11 @@ const routes = [
         ]
       }
     ] as AppRouteRecordRaw[]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/Login.vue')
   }
 ]
 
@@ -103,8 +108,12 @@ const router: Router = createRouter({
   routes
 })
 
-router.beforeEach(async (to: Route, from: Route, next: () => void) => {
+// eslint-disable-next-line consistent-return
+router.beforeEach(async (to: Route, from: Route, next: Function) => {
   NProgress.start()
+  if (to.path === '/login') return next()
+  const tokenstr = window.sessionStorage.getItem('token')
+  if (!tokenstr) return next({ name: 'Login' })
   next()
 })
 
