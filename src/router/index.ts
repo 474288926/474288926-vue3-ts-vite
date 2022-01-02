@@ -9,6 +9,8 @@ import {
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
+import Cookies from 'js-cookie'
+
 import Home from '@/views/Home.vue'
 import Vuex from '@/views/Vuex.vue'
 import Test from '@/views/Test.vue'
@@ -112,7 +114,7 @@ const router: Router = createRouter({
 router.beforeEach(async (to: Route, from: Route, next: Function) => {
   NProgress.start()
   if (to.path === '/login') return next()
-  const tokenstr = window.sessionStorage.getItem('token')
+  const tokenstr = Cookies.get('token')
   if (!tokenstr) return next({ name: 'Login' })
   next()
 })

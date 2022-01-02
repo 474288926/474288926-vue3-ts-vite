@@ -25,12 +25,13 @@
 
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router'
+import Cookies from 'js-cookie'
 
 const router = useRouter()
 const route = useRoute()
 const login = () => {
   console.log(123)
-  window.sessionStorage.setItem('token', '测试token')
+  Cookies.set('token', '测试Cookies')
   router.push('/')
 }
 </script>
