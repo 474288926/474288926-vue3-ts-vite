@@ -13,6 +13,22 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env': env
     },
+    css: {
+      postcss: {
+        plugins: [
+          {
+            postcssPlugin: 'internal:charset-removal',
+            AtRule: {
+              charset: (atRule) => {
+                if (atRule.name === 'charset') {
+                  atRule.remove()
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src') // 设置 `@` 指向 `src` 目录
