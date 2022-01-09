@@ -1,3 +1,4 @@
+const modules = import.meta.glob('../views/**/**.vue')
 /* eslint-disable array-callback-return */
 /* eslint-disable import/no-dynamic-require */
 export const loadView = (view: any) => {
@@ -5,7 +6,7 @@ export const loadView = (view: any) => {
   // return (resolve) => require([`@/views/${view}`], resolve) router3版本
   // console.log(view, () => import(`../views/${view}.vue`))
   // eslint-disable-next-line global-require
-  return () => import(`../views/${view}.vue`) // router4版本
+  return modules[`../views/${view}.vue`]
 }
 // 为权限路由异步添加组件
 export const filterAsyncRouter = (routeList: any) => {
