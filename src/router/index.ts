@@ -8,12 +8,10 @@ import {
 
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-
 import Cookies from 'js-cookie'
+import { store } from '@/store'
 
-import Home from '@/views/Home.vue'
-import Vuex from '@/views/Vuex.vue'
-import Test from '@/views/Test.vue'
+import { filterAsyncRouter } from './filterAsyncRouter'
 
 NProgress.configure({ showSpinner: false })
 
@@ -24,7 +22,7 @@ export type AppRouteRecordRaw = RouteRecordRaw & {
   icon?: string
 }
 
-const routes = [
+export const constantRoutes = [
   {
     path: '/',
     // name: '首页',
@@ -39,64 +37,9 @@ const routes = [
         path: '/home',
         name: 'Home',
         icon: 'el-icon-menu',
-        component: Home
-      },
-      {
-        path: '/vuex',
-        name: 'Vuex',
-        icon: 'el-icon-menu',
-        component: Vuex
-      },
-      {
-        path: '/test',
-        name: 'Test',
-        icon: 'el-icon-menu',
-        component: Test
-      },
-      {
-        path: '/example',
-        name: '组件示例',
-        icon: 'el-icon-menu',
-        component: () => import('@/views/Example/Example.vue'),
-        children: [
-          {
-            path: '/table',
-            name: 'table：表格',
-            component: () => import('@/views/Example/comps/table.vue')
-          },
-          {
-            path: '/input',
-            name: 'input：输入框',
-            component: () => import('@/views/Example/comps/input.vue')
-          },
-          {
-            path: '/select',
-            name: 'select：选择框',
-            component: () => import('@/views/Example/comps/select.vue')
-          },
-          {
-            path: '/cascader',
-            name: 'cascader：级联选择器',
-            component: () => import('@/views/Example/comps/cascader.vue')
-          },
-          {
-            path: '/checkbox',
-            name: 'checkbox：多选框',
-            component: () => import('@/views/Example/comps/checkbox.vue')
-          },
-          {
-            path: '/datepicker',
-            name: 'datepicker：日期选择器',
-            component: () => import('@/views/Example/comps/datepicker.vue')
-          },
-          {
-            path: '/button',
-            name: 'button：按钮',
-            component: () => import('@/views/Example/comps/button.vue')
-          }
-        ]
+        component: () => import('@/views/Home.vue')
       }
-    ] as AppRouteRecordRaw[]
+    ]
   },
   {
     path: '/login',
@@ -105,14 +48,101 @@ const routes = [
   }
 ]
 
+export const asyncRoutes = [
+  {
+    path: '/vuex',
+    name: 'Vuex',
+    icon: 'el-icon-menu',
+    meta: { roles: ['admin', 'user'] },
+    component: 'Vuex'
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    icon: 'el-icon-menu',
+    meta: { roles: ['admin'] },
+    component: 'Test'
+  },
+  {
+    path: '/example',
+    name: '组件示例',
+    icon: 'el-icon-menu',
+    meta: { roles: ['user'] },
+    component: 'Example/Example',
+    children: [
+      {
+        path: '/table',
+        name: 'table：表格',
+        meta: { roles: ['user'] },
+        component: 'Example/comps/table'
+      },
+      {
+        path: '/input',
+        name: 'input：输入框',
+        meta: { roles: ['user'] },
+        component: 'Example/comps/input'
+      },
+      {
+        path: '/select',
+        name: 'select：选择框',
+        meta: { roles: ['user'] },
+        component: 'Example/comps/select'
+      },
+      {
+        path: '/cascader',
+        name: 'cascader：级联选择器',
+        meta: { roles: ['admin'] },
+        component: 'Example/comps/cascader'
+      },
+      {
+        path: '/checkbox',
+        name: 'checkbox：多选框',
+        meta: { roles: ['admin'] },
+        component: 'Example/comps/checkbox'
+      },
+      {
+        path: '/datepicker',
+        name: 'datepicker：日期选择器',
+        meta: { roles: ['admin'] },
+        component: 'Example/comps/datepicker'
+      },
+      {
+        path: '/button',
+        name: 'button：按钮',
+        meta: { roles: ['admin'] },
+        component: 'Example/comps/button'
+      }
+    ]
+  }
+]
+
 const router: Router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes: constantRoutes
 })
 
 // eslint-disable-next-line consistent-return
 router.beforeEach(async (to: Route, from: Route, next: Function) => {
   NProgress.start()
+  // console.log('添加路由前', router.getRoutes())
+  // if (router.getRoutes().length === 4) {
+  //   let addRouterList = filterAsyncRouter(JSON.parse(JSON.stringify(asyncRoutes)))
+  //   addRouterList.forEach((i) => {
+  //     console.log('添加路由', i)
+  //     router.addRoute('layout', i)
+  //   })
+  // }
+  const { roles } = store.state.userModule
+  const accessRoutes = await store.dispatch('permissionModule/generateRoutes', roles)
+  let addRouterList = filterAsyncRouter(JSON.parse(JSON.stringify(accessRoutes)))
+  console.log('权限返回的路由', addRouterList)
+  addRouterList.forEach((i) => {
+    console.log('添加路由', i)
+    router.addRoute('layout', i)
+  })
+  console.log('刷新路由')
+  console.log(accessRoutes)
+  console.log('添加后的路由', router.getRoutes())
   if (to.path === '/login') return next()
   const tokenstr = Cookies.get('token')
   if (!tokenstr) return next({ name: 'Login' })

@@ -3,6 +3,8 @@ import { createStore, Store, useStore as baseUseStore } from 'vuex'
 import RootStateTypes, { AllStateTypes } from './types'
 
 import numFactoryModule from './modules/NumFactory'
+import permissionModule from './modules/permission'
+import userModule from './modules/user'
 
 export const store = createStore<RootStateTypes>({
   state: {
@@ -12,7 +14,9 @@ export const store = createStore<RootStateTypes>({
   mutations: {},
   actions: {},
   modules: {
-    numFactoryModule
+    numFactoryModule,
+    permissionModule,
+    userModule
   }
 })
 
