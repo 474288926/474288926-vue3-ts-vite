@@ -28,7 +28,7 @@ import { useRouter, useRoute } from 'vue-router'
 import Cookies from 'js-cookie'
 
 const router = useRouter()
-const route = useRoute()
+// const route = useRoute()
 const login = () => {
   console.log(123)
   Cookies.set('token', '测试Cookies')
